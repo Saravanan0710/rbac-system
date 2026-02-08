@@ -1,0 +1,18 @@
+.main-layout {
+  margin-left: 260px;
+  min-height: 100vh;
+  background-color: var(--bg-primary);
+  transition: margin-left 0.3s ease;
+}
+
+.main-content {
+  padding: var(--spacing-lg);
+  min-height: 100vh;
+  background-color: var(--bg-primary);
+}
+
+@media (max-width: 768px) {
+  .main-layout {
+    margin-left: 70px;
+  }
+}
