@@ -115,6 +115,6 @@ func (r *UserRepository) UpdateUser(id string, updates map[string]interface{}) e
 }
 
 func (r *UserRepository) DeleteUser(id string) error {
-	_, err := r.DB.Exec(`UPDATE users SET is_active = 0 WHERE id = ?`, id)
+	_, err := r.DB.Exec(`DELETE FROM users WHERE id = ?`, id)
 	return err
 }

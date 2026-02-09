@@ -123,7 +123,7 @@ function Tasks() {
         prev.map((t) => (t.id === updatedTask.id ? updatedTask : t))
       )
     } catch (err) {
-      setError('Failed to update task')
+      setError('Status Shuold be Updated by Manager')
       console.error(err)
     }
   }

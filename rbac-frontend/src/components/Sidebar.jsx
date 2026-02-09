@@ -1,5 +1,5 @@
 import { Link, useNavigate, useLocation } from 'react-router-dom'
-import { getAuthToken, removeAuthToken, getUserFromToken } from '../utils/jwt'
+import { getAuthToken, removeAuthToken, getUserFromToken, getUserRoleFromToken } from '../utils/jwt'
 import './Sidebar.css'
 
 function Sidebar({ onLogout }) {
@@ -7,6 +7,7 @@ function Sidebar({ onLogout }) {
   const location = useLocation()
   const token = getAuthToken()
   const user = token ? getUserFromToken(token) : null
+  const userRole = token ? getUserRoleFromToken(token) : null
 
   const handleLogout = () => {
     removeAuthToken()
@@ -49,13 +50,15 @@ function Sidebar({ onLogout }) {
           <span className="nav-icon">📁</span>
           <span className="nav-label">Projects</span>
         </Link>
-        <Link 
-          to="/users" 
-          className={`nav-item ${isActive('/users') ? 'active' : ''}`}
-        >
-          <span className="nav-icon">👥</span>
-          <span className="nav-label">Users</span>
-        </Link>
+        {userRole !== 'viewer' && (
+          <Link 
+            to="/users" 
+            className={`nav-item ${isActive('/users') ? 'active' : ''}`}
+          >
+            <span className="nav-icon">👥</span>
+            <span className="nav-label">Users</span>
+          </Link>
+        )}
         <Link 
           to="/profile" 
           className={`nav-item ${isActive('/profile') ? 'active' : ''}`}
